@@ -1,5 +1,6 @@
 import random
 plays = [["","",""], ["","",""], ["","",""]]
+result = {"X":0, "O":0, "Ties":0, "Games":0}
 def board(plays):
     for i in range(len(plays)):
         print(" | ".join(plays[i]))
@@ -7,7 +8,7 @@ def board(plays):
             break
         print("------")
 
-def play(position, player):
+def play(position, player, plays):
     row = position // 3
     column = position % 3
     if plays[row][column]:
@@ -15,7 +16,7 @@ def play(position, player):
     plays[row][column] = player
     return True
 
-def check_winner():
+def check_winner(plays):
     for row in plays:
         if row[0] and row[0] == row[1]  == row[2]:
             return True
@@ -28,13 +29,14 @@ def check_winner():
         return True
     return False
 
-def tie_checker():
+def tie_checker(plays):
     for row in plays:
         if row[0] == "" or row[1] == "" or row[2] == "":
             return False
     return not check_winner()
 
 def multiplayer_game():
+    plays = [["","",""], ["","",""], ["","",""]]
     turn = 0
     while True:
         print(board(plays))
@@ -44,16 +46,20 @@ def multiplayer_game():
         except ValueError:
             print("Please enter a number from 0 to 8.")
             continue
-        if play(position, player):
+        if play(position, player, plays):
             turn += 1
-        if check_winner():
+        if check_winner(plays):
             print(board(plays))
             print(f"{player} won !!!")
+            result[player] += 1
+            result["Games"] += 1
             break
-        if tie_checker():
+        if tie_checker(plays):
             print(board(plays))
             print("Its a tie!")
+            result["Ties"] += 1
             break
+    return result
 
 def play_against_computer():
     turn = 0
@@ -63,7 +69,7 @@ def play_against_computer():
         except ValueError:
             print("Please enter a number from 0 to 8")
             continue
-        if not play(position, "X"):
+        if not play(position, "X", plays):
             print("That spot is taken")
             continue
         turn += 1
@@ -96,7 +102,12 @@ def play_against_computer():
 
 mode = input("Play against Player (1) or Computer(2)?")
 if mode == "1":
-    multiplayer_game()
+    while True:
+        multiplayer_game()
+        print(result)
+        again = input("Play again? (y/n): ")
+        if again.lower() != "y":
+            break
 elif mode == "2":
     play_against_computer()
 else:
