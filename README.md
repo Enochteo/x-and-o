@@ -1,7 +1,9 @@
 
 # X and O
 
-Just a mini mini terminal game I built just coz I was bored and wanted to push something to github to reignite my streak.## Features
+Just a mini mini terminal game I built just coz I was bored and wanted to push something to github to reignite my streak.
+
+## Features
 1. 2-player multiplayer mode
 2. Play against computer mode (basic AI)
 3. Clean game board display per entry and game
