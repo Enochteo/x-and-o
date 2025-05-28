@@ -7,4 +7,4 @@ Logs
 - ~~Tomorrow I'd add another mode to play against computer~~
 - Tomorrow would add probably a score board, restart fix, and a way to enter a name for each players in multiplayers.
 
-Enjoy the game!
+Enjoy the game! Thanks.
