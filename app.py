@@ -1,6 +1,6 @@
 import random
 plays = [["","",""], ["","",""], ["","",""]]
-result = {"X":0, "O":0, "Ties":0, "Games":0}
+result = {"Ties":0, "Games":0}
 def board(plays):
     for i in range(len(plays)):
         print(" | ".join(plays[i]))
@@ -35,23 +35,25 @@ def tie_checker(plays):
             return False
     return not check_winner()
 
-def multiplayer_game():
+def multiplayer_game(players):
     plays = [["","",""], ["","",""], ["","",""]]
     turn = 0
     while True:
         print(board(plays))
         player = "X" if turn % 2 == 0 else "O"
         try:
-            position = int(input(f"Player {player} Choose your position (0-8): "))
+            position = int(input(f"Player X, Choose your position (0-8): "))
+            if position < 0 or position > 8:
+                raise IndexError        
         except ValueError:
-            print("Please enter a number from 0 to 8.")
+            print("Please enter a number from 0 to 8")
             continue
         if play(position, player, plays):
             turn += 1
         if check_winner(plays):
             print(board(plays))
-            print(f"{player} won !!!")
-            result[player] += 1
+            print(f"{players[player]} won !!!")
+            result[players[player]] += 1
             result["Games"] += 1
             break
         if tie_checker(plays):
@@ -62,22 +64,27 @@ def multiplayer_game():
     return result
 
 def play_against_computer():
+    plays = [["","",""], ["","",""], ["","",""]]
     turn = 0
     while True:
         try:
             position = int(input(f"Player X, Choose your position (0-8): "))
+            if position < 0 or position > 8:
+                raise IndexError        
         except ValueError:
             print("Please enter a number from 0 to 8")
             continue
+        except IndexError:
+            print("Position must be between 0 and 8")
         if not play(position, "X", plays):
             print("That spot is taken")
             continue
         turn += 1
-        if check_winner():
+        if check_winner(plays):
             print(board(plays))
             print("You won !!!")
             break
-        if tie_checker():
+        if tie_checker(plays):
             print(board(plays))
             print("Its a tie!")
             break
@@ -89,21 +96,26 @@ def play_against_computer():
             print(board(plays))
             print(f"Computer chose position{position}")
             turn += 1
-        if check_winner():
+        if check_winner(plays):
             print(board(plays))
             print("Computer won !!!")
             break
-        if tie_checker():
+        if tie_checker(plays):
             print(board(plays))
             print("Its a tie!")
             break
         
 
 
-mode = input("Play against Player (1) or Computer(2)?")
+mode = input("Play against Player (1) or Computer(2)? ")
 if mode == "1":
     while True:
-        multiplayer_game()
+        p1_name = input("Enter name for Player X: ")
+        p2_name = input("Enter name for Player O: ")
+        players = {"X":p1_name, "O":p2_name}
+        result[players["X"]] = 0
+        result[players["O"]] = 0
+        multiplayer_game(players)
         print(result)
         again = input("Play again? (y/n): ")
         if again.lower() != "y":
