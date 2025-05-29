@@ -20,7 +20,7 @@ Just a mini mini terminal game I built just coz I was bored and wanted to push s
 - Improved 2-player multiplayer mode
 - Prompted players for names and passed them into the respectively needed player outputs (Mapped the player names to their symbols)
 - Implemented a persistent scoreboard
-
+- Replay functionality
 - Imporved input validation for positions that were out of range
 
 ## Concepts Used
