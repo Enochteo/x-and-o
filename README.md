@@ -27,7 +27,7 @@ Just a mini mini terminal game I built just coz I was bored and wanted to push s
 - Defensive programming
 - Data mapping
 - Modular code design
-- Game design thinking
+
 
 
 Enjoy the game!
