@@ -31,4 +31,4 @@ Just a mini mini terminal game I built just coz I was bored and wanted to push s
 
 
 
-Enjoy the game!
+Enjoy the game! Thanks.
