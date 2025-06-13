@@ -1,7 +1,7 @@
 
 # X and O
 
-Just a mini mini terminal game I built just coz I was bored and wanted to push something to github to reignite my streak.
+Just a mini mini terminal game I built just because I wanted to build something cool.
 
 ## Features
 1. 2-player multiplayer mode
