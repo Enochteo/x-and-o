@@ -1,7 +1,7 @@
 
 # X and O
 
-Just a mini mini terminal game I built just because I wanted to build something cool.
+Just a mini mini terminal game I built just because I wanted to build something cool
 
 ## Features
 1. 2-player multiplayer mode
